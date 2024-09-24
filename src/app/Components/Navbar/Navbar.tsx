@@ -1,8 +1,9 @@
-'use client'
-import React,{useState} from "react";
+"use client";
+import React, { useState } from "react";
 import Button from "../Button/Button";
 import { Inter } from "next/font/google";
 import { Stylish } from "next/font/google";
+import { Drawer, Space } from "antd";
 import { RxHamburgerMenu } from "react-icons/rx";
 const inter = Inter({ subsets: ["latin"] });
 const stylish = Stylish({
@@ -11,10 +12,16 @@ const stylish = Stylish({
 });
 function Navbar() {
   const navData = ["Home", "Services", "Work", "About us", "Blog"];
-  const [isDropDownOpen,setIsDropDownOpen] = useState(false);
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const onClose = () => {
+    setOpen(false);
+  };
   return (
-    <div className="flex flex-row items-center justify-between px-[30px] md:px-[30px] lg:px-[120px] py-[25px]">
-      <h1 className={`text-white text-[25px] md:text-[25px] lg:text-[35px] ${stylish.className}`}>
+    <div className="flex flex-row items-center justify-between px-[10px] sm:px-[30px] md:px-[30px] lg:px-[120px] py-[25px]">
+      <h1
+        className={`text-white text-[25px] md:text-[25px] lg:text-[35px] ${stylish.className}`}
+      >
         Imiaz Ahmed <span className="text-green-500 text-[35px]">.</span>{" "}
       </h1>
       <div className="hidden md:flex flex-row gap-[58px]">
@@ -37,10 +44,36 @@ function Navbar() {
       </div>
 
       <div className="md:hidden">
-      <RxHamburgerMenu  className="text-white" onClick={()=> setIsDropDownOpen(!isDropDownOpen)}/>
-        <div></div>
-            
-
+        <RxHamburgerMenu
+          className="text-white"
+          onClick={() => setOpen(!open)}
+        />
+        <Drawer
+          title="Imtiaz Ahmed"
+          // placement={placement}
+          width={500}
+          onClose={onClose}
+          open={open}
+          // extra={
+          //   <Space>
+          //     <Button onClick={onClose} btnText="Cancel"/>
+          //     <Button onClick={onClose} btnText = "Ok"/>
+          //   </Space>
+          // }
+        >
+          <div className="flex flex-col gap-5">
+            {navData.map((element, idx) => {
+              return (
+                <div
+                  key={element}
+                  className={`text-black  text-[16px] hover:underline hover:text-gray-400 cursor-pointer transition-all delay-100 ${inter.className}`}
+                >
+                  {element}
+                </div>
+              );
+            })}
+          </div>
+        </Drawer>
       </div>
     </div>
   );
