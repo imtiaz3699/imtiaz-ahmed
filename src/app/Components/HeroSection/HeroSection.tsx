@@ -1,21 +1,31 @@
-import React from "react";
+'use client'
+import React, { useContext } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { Inter } from "next/font/google";
 import ProfilePhoto from "../../photos/profilePhoto.jpg";
+import { StyleContext } from "../../../../Contexts/StyleContext";
 const inter = Inter({ subsets: ["latin"] });
 function HeroSection() {
+  const style = useContext(StyleContext);
+  if (!style) {
+    throw Error("style is not defined");
+  }
+  const { mode, setMode,textColor,bgColor } = style;
+
+console.log(mode,textColor)
+  
   return (
-    <div className="flex flex-col-reverse lg:flex-row items-center justify-between text-white px-[10px] sm:px-[30px] md:px-[30px] lg:px-[120px] py-[100px] gap-[50px] w-full ">
+    <div className={`${mode === 'light' ? 'text-color-dark bg-color-light' : 'text-color-light bg-color-dark'} flex flex-col-reverse lg:flex-row items-center justify-between  px-[10px] sm:px-[30px] md:px-[30px] lg:px-[120px] py-[100px] gap-[50px] w-full `}>
       <div className="flex flex-col gap-[50px] md:max-w-[70%] w-full">
         <div>
           <h1
-            className={`text-[20px] sm:text-[25px] md:text-[35px]  xl:text-[50px] font-medium ${inter.className}`}
+            className={` text-[20px] sm:text-[25px] md:text-[35px]  xl:text-[50px] font-medium ${inter.className}`}
           >
             Hi I'am Imtiaz Ahmed
           </h1>
-          <p className="text-[16px] md:text-[18px] xl:text-[25px] ">
+          <p className={` text-[16px] md:text-[18px] xl:text-[25px] `}>
             I'm a full stack developer (React.js & Node.js) with a focus on
             creating (and occasionally designing) exceptional digital
             experiences that are fast, accessible, visually appealing, and

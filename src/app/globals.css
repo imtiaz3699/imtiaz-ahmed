@@ -25,3 +25,20 @@ body {
     text-wrap: balance;
   }
 } */
+.drawer .ant-drawer-header-title > button > span > svg{
+      fill: red !important;
+}
+/* ${mode === 'light' ? 'text-[#0A0A0F]' : ' text-[#FFFFFF] '} */
+.text-color-light {
+  color:#FFFFFF;
+}
+.text-color-dark {
+  color:#0A0A0F;
+}
+.bg-color-dark{
+  background-color: #0A0A0F;
+} 
+.bg-color-light{
+  background-color: #FFFFFF;
+}
+
